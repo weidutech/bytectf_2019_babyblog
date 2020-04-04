@@ -7,7 +7,7 @@ if(isset($_SESSION['id'])){
 }
 
 if(isset($_POST['verify'])){
-	if(substr(md5($_POST['verify']), 0, 5) == $_SESSION['verify']){
+	if($_POST['verify'] == $_SESSION['verify']){
 		if(isset($_POST['username']) && isset($_POST['password'])){
 			if(strlen($_POST['username']) > 20){
 				exit("<script>alert('username too long.');history.go(-1);</script>");
