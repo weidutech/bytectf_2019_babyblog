@@ -7,7 +7,7 @@ if(isset($_SESSION['id'])){
 }
 
 if(isset($_POST['verify'])){
-	if($_POST['verify'] == $_SESSION['verify']){
+	if($_POST['verify'] == $verify){
 		if(isset($_POST['username']) && isset($_POST['password'])){
 			if(strlen($_POST['username']) > 20){
 				exit("<script>alert('username too long.');history.go(-1);</script>");
@@ -35,6 +35,8 @@ if(isset($_POST['verify'])){
 		exit("<script>alert('Verification code error.');history.go(-1);</script>");
 	}
 }else{
-	$_SESSION['verify'] = substr(md5(mt_rand()), 0, 5);
+	$verify=md5(mt_rand());
+        $_SESSION['verify'] = substr($verify,0,5);
+
 	include("templates/register.html");
 }
